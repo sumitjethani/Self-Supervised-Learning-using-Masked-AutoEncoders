@@ -7,9 +7,9 @@ Self-supervised image representation learning using Masked Autoencoders, impleme
 
 ## What is MAE?
 
-The idea is simple — take an image, randomly hide 75% of its patches, and train a model to reconstruct the missing parts. No labels, no supervision. The model learns meaningful visual representations just by filling in blanks.
+The idea is simple take an image, randomly hide 75% of its patches, and train a model to reconstruct the missing parts. No labels, no supervision. The model learns meaningful visual representations just by filling in blanks.
 
-To reconstruct well, the model has to understand textures, shapes, edges, and spatial context — not because it was told to, but because that's the only way it can do its job.
+To reconstruct well, the model has to understand textures, shapes, edges, and spatial context not because it was told to, but because that's the only way it can do its job.
 
 ---
 
@@ -19,14 +19,14 @@ An asymmetric encoder-decoder design built entirely with base PyTorch:
 
 | Component | Details |
 |-----------|---------|
-| **Encoder** | ViT-Base B/16 — 12 layers, dim=768, 12 heads, ~86M params |
-| **Decoder** | ViT-Small S/16 — 12 layers, dim=384, 6 heads, ~22M params |
+| **Encoder** | ViT-Base B/16 - 12 layers, dim=768, 12 heads, ~86M params |
+| **Decoder** | ViT-Small S/16 - 12 layers, dim=384, 6 heads, ~22M params |
 | **Masking** | 75% random patch masking (147/196 patches hidden) |
 | **Patch Size** | 16×16 pixels |
 | **Image Size** | 224×224 |
 | **Pos. Embedding** | 2D Sinusoidal (fixed) |
 
-The encoder processes **only the 25% visible patches** — no mask tokens are fed to it. The decoder receives the encoded visible tokens along with learnable mask tokens and reconstructs the full image at pixel level.
+The encoder processes **only the 25% visible patches** - no mask tokens are fed to it. The decoder receives the encoded visible tokens along with learnable mask tokens and reconstructs the full image at pixel level.
 
 ---
 
@@ -35,7 +35,7 @@ The encoder processes **only the 25% visible patches** — no mask tokens are fe
 | Setting | Value |
 |---------|-------|
 | Dataset | TinyImageNet (100k images, 200 classes) |
-| Platform | Kaggle — GPU T4 × 2 |
+| Platform | Kaggle - GPU T4 × 2 |
 | Epochs | 35 (early stopping) |
 | Batch Size | 64 |
 | Optimizer | AdamW (β₁=0.9, β₂=0.95) |
@@ -49,7 +49,7 @@ The encoder processes **only the 25% visible patches** — no mask tokens are fe
 **Training results:**
 - Train loss: 0.866 → 0.386
 - Val loss: 0.740 → 0.383
-- No overfitting — train and val loss stayed extremely close throughout
+- No overfitting - train and val loss stayed extremely close throughout
 
 ---
 
@@ -68,9 +68,9 @@ The encoder processes **only the 25% visible patches** — no mask tokens are fe
 
 ## Live Demo
 
-Try the model live on HuggingFace Spaces — upload any image, adjust the masking ratio, and watch the model reconstruct the missing patches in real time.
+Try the model live on HuggingFace Spaces  upload any image, adjust the masking ratio, and watch the model reconstruct the missing patches in real time.
 
-👉 **[HuggingFace Space — Live Demo](#)**
+👉 https://huggingface.co/spaces/Sumit-Jethani/Self_Supervised_Learning_using_Masked_AutoEncoders
 
 ---
 
@@ -78,7 +78,7 @@ Try the model live on HuggingFace Spaces — upload any image, adjust the maskin
 
 The trained checkpoint is hosted on HuggingFace due to GitHub's file size limit.
 
-👉 **[Download mae_best.pth](#)**
+👉 https://huggingface.co/spaces/Sumit-Jethani/Self_Supervised_Learning_using_Masked_AutoEncoders/resolve/main/mae_best.pth
 
 To use locally, download `mae_best.pth` and place it in the root directory.
 
@@ -88,7 +88,7 @@ To use locally, download `mae_best.pth` and place it in the root directory.
 
 **1. Clone the repo**
 ```bash
-git clone https://github.com/your-username/masked-autoencoder
+git clone https://github.com/sumitjethani/Self-Supervised-Learning-using-Masked-AutoEncoders
 cd masked-autoencoder
 ```
 
@@ -117,8 +117,8 @@ Open `MAE_Assignment.ipynb` on Kaggle with GPU T4 × 2 and add the TinyImageNet 
 **Quantitative:**
 | Metric | Score |
 |--------|-------|
-| PSNR | evaluated on val set |
-| SSIM | evaluated on val set |
+| PSNR | 24.20 +/- 3.04  |
+| SSIM | 0.7117 +/- 0.0964 |
 
 **Qualitative:**
 
